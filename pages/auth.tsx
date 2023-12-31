@@ -4,29 +4,34 @@ import axios from "axios"
 import {signIn} from "next-auth/react"
 import {FcGoogle} from "react-icons/fc"
 import {FaGit, FaGithub} from "react-icons/fa"
+import { useRouter } from "next/router";
 
 
 const Auth = () => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
-
   const [variant, setVariant] = useState("login")
 
+  const router = useRouter();
+  
   const toggleVariant = useCallback(() => {
     setVariant((currentVariant) => (currentVariant === "login" ? "signup" : "login"))
   }, [])
 
 
-  const register = useCallback(async() => {
+const register = useCallback(async() => {
 try {
   await axios.post('/api/register', {
     email, 
     name,
     password
   }) 
+  console.log("Successfull register")
+  router.push("/")
 
 } catch(e) {
+  console.log("Error trying to register")
   console.log(e)
 }
   }, [email, name, password])
@@ -37,11 +42,12 @@ const login = useCallback(async()=> {
       await signIn('credentials', {
         email,
         password,
-        redirect: false,
-        callbackUrl: "/"
+        redirect: true,
+        callbackUrl: "/profiles"
       })
-      console.log("successful login")
+      console.log("Successful login")
     } catch(e) {
+      console.log("Error trying to login")
       console.log(e)
     }
 }, [email, password])
@@ -89,8 +95,8 @@ const login = useCallback(async()=> {
               {variant === "login" ? "Login" : "Register"}
             </button>
             <div className="flex flex-row items-center gap-4 mt-8 justify-center">
-              <div onClick={() => signIn('google', {callbackUrl: "/"})} className="w-10 h-10 bg-white rounded-full flex items-center justify-center cursor-pointer h over:opacity-80 transition"> <FcGoogle size={30} /></div>
-              <div onClick={() => signIn('github', {callbackUrl: "/"})} className="w-10 h-10 bg-white rounded-full flex items-center justify-center cursor-pointer h over:opacity-80 transition"> <FaGithub size={30} /></div>
+              <div onClick={() => signIn('google', {callbackUrl: "/profiles"})} className="w-10 h-10 bg-white rounded-full flex items-center justify-center cursor-pointer h over:opacity-80 transition"> <FcGoogle size={30} /></div>
+              <div onClick={() => signIn('github', {callbackUrl: "/profiles"})} className="w-10 h-10 bg-white rounded-full flex items-center justify-center cursor-pointer h over:opacity-80 transition"> <FaGithub size={30} /></div>
             </div>
             <p className="text-neutral-500 mt-12">
               {variant === 'login' ? "Don't have an account? " : "Already have an account?"}

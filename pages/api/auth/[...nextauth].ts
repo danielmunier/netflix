@@ -8,7 +8,7 @@ import { PrismaAdapter } from '@next-auth/prisma-adapter'
 
 
 
-const nextAuthOptions: NextAuthOptions = {
+export const nextAuthOptions: NextAuthOptions = {
 
         // Escolhe os provedores para autenticação
         providers: [

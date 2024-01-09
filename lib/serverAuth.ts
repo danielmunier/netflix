@@ -1,10 +1,15 @@
-import { NextApiRequest } from "next";
+import { NextApiRequest, NextApiResponse } from "next";
 import { getSession } from "next-auth/react";
+import { getToken } from "next-auth/jwt";
 
 import prismadb from "@/lib/prismadb";
+import { getServerSession } from "next-auth";
+import {nextAuthOptions}  from "@/pages/api/auth/[...nextauth]";
 
-const serverAuth = async (req: NextApiRequest) => {
-  const session = await getSession({ req });
+
+const serverAuth = async (req: NextApiRequest, res: NextApiResponse) => {
+  
+  const session = await getServerSession( req, res, nextAuthOptions );
   if (!session?.user?.email) {
 
     console.log("No session")

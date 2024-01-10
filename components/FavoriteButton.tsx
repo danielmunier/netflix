@@ -37,11 +37,10 @@ const FavoriteButton: React.FC<FavoriteButtonProps> = ({ movieId }) => {
         const updatedFavoritesIds = response?.data?.favoritesIds
 
 
-        mutate({
+        mutate && mutate({
             ...currentUser,
             favoritesIds: updatedFavoritesIds
-        })
-
+        }) 
         mutateFavorites();
     }, [movieId, isFavorite, currentUser, mutate, mutateFavorites])
 

@@ -7,12 +7,14 @@ import useInfoModal from "@/hooks/useInfoModal";
 import useMovieList from "@/hooks/useMovieList";
 import useCurrentUser from "@/hooks/userCurrentUser";
 import { NextPageContext } from "next"
+import { getServerSession } from "next-auth";
 import { getSession, signOut } from "next-auth/react"
 import { redirect } from "next/dist/server/api-utils";
+import { nextAuthOptions } from "./api/auth/[...nextauth]";
 
 // Protege a rota /
 export async function getServerSideProps(context: NextPageContext) {
-  const session = await getSession(context);
+  const session = await getServerSession(nextAuthOptions);
 
   if(!session) {
     return {

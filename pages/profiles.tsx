@@ -5,22 +5,6 @@ import { getSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { nextAuthOptions } from "./api/auth/[...nextauth]";
 
-export async function getServerSideProps(context: NextPageContext) {
-  const session = await getServerSession(nextAuthOptions);
-  if (!session) {
-    return {
-      redirect: {
-        destination: "/auth",
-        permanent: false,
-      },
-    };
-  }
-
-  return {
-    props: {},
-  };
-}
-
 const Profiles = () => {
     const router = useRouter()
   const { data: user } = useCurrentUser();

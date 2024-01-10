@@ -1,9 +1,16 @@
 import useBillboard from "@/hooks/useBillboard";
-import React from "react";
+import React, { useCallback } from "react";
 import {FaInfoCircle} from "react-icons/fa"
+import PlayButton from "./PlayButton";
+import useInfoModal from "@/hooks/useInfoModal";
 
 const Billboard = () => {
   const { data } = useBillboard();
+  const {openModal} = useInfoModal();
+
+  const handleOpenModal = useCallback(() => {
+    openModal(data?.id)
+  }, [openModal, data?.id])
 
   return (
     <div className="relative h-[56.25vw]">
@@ -48,13 +55,15 @@ const Billboard = () => {
 
         ">{data?.description}</p>
         <div className="flex flex-row items-center mt-3 md:mt-4 gap-4">
-            <button className="bg-white text-white bg-opacity-30 rounded-md py-1 md:py-2 px-2 md:px-4 w-auto text-xs lg:text-lg font-semibold flex flex-row items-center
+            <button onClick={handleOpenModal} className="bg-white text-white bg-opacity-30 rounded-md py-1 md:py-2 px-2 md:px-4 w-auto text-xs lg:text-lg font-semibold flex flex-row items-center
             hover:bg-opacity-20
             transition
             ">
                 <FaInfoCircle className="mr-1"/>
                 More Info
             </button>
+
+            <PlayButton movieId={data?.id}/>
             
         </div>
       </div>

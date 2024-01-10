@@ -1,7 +1,9 @@
 import Billboard from "@/components/Billboard";
+import InfoModal from "@/components/InfoModal";
 import MovieList from "@/components/MovieList";
 import Navbar from "@/components/Navbar";
 import useFavorites from "@/hooks/useFavorites";
+import useInfoModal from "@/hooks/useInfoModal";
 import useMovieList from "@/hooks/useMovieList";
 import useCurrentUser from "@/hooks/userCurrentUser";
 import { NextPageContext } from "next"
@@ -29,11 +31,13 @@ export async function getServerSideProps(context: NextPageContext) {
 export default function Home() {
     const data = useCurrentUser();
 
-    const {data: movies = []} = useMovieList()
-    const {data: favorites = []} = useFavorites()
+    const {data: movies = []} = useMovieList();
+    const {data: favorites = []} = useFavorites();
+    const {isOpen, closeModal} = useInfoModal();
 
   return (
     <>
+      <InfoModal visible={isOpen} onClose={closeModal}/>
       <Navbar/>
       <Billboard/>
       <div className="pb-40">

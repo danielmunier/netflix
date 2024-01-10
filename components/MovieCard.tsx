@@ -1,12 +1,24 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { FaPlay } from "react-icons/fa";
 import FavoriteButton from "./FavoriteButton";
+import { useRouter } from "next/router";
+import {FaInfoCircle} from "react-icons/fa"
+import useInfoModal from "@/hooks/useInfoModal";
+
 
 interface MovieCardProps {
   data: Record<string, any>;
 }
 
 const MovieCard: React.FC<MovieCardProps> = ({ data }) => {
+  const router = useRouter();
+
+  const {openModal} = useInfoModal();
+
+  const handleOpenModal = useCallback(() => {
+    openModal(data?.id)
+  }, [openModal, data?.id])
+
   return (
     <div className="group bg-zinc-900 col-span relative h-[12vw]">
       <img
@@ -75,14 +87,17 @@ const MovieCard: React.FC<MovieCardProps> = ({ data }) => {
         "
         >
           <div className="flex flex-row items-center gap-3">
-            <div className="cursor-pointer w-6 h-6 lg:w-10 lg:h-10 bg-white rounded-full flex justify-center items-center transition hover:bg-neutral-300">
+            <div onClick={()=> router.push(`/watch/${data?.id}`)} className="cursor-pointer w-6 h-6 lg:w-10 lg:h-10 bg-white rounded-full flex justify-center items-center transition hover:bg-neutral-300 hover:scale-110">
               <FaPlay className="text-black w-4 lg:w-6" />
             </div>
             <FavoriteButton movieId={data?.id} />
             <div
-              onClick={() => {}}
-              className="cursor-pointer ml-auto group/item w-6 h-6 lg:w-10 lg:h-10 border-white border-2 rounded-full flex justify-center items-center transition hover:border-neutral-300"
-            ></div>
+              onClick={handleOpenModal}
+              className="cursor-pointer ml-auto group/item w-6 h-6 lg:w-10 lg:h-10 rounded-full flex justify-center items-center transition hover:border-neutral-300 hover:scale-110"
+            >
+              <FaInfoCircle className="text-white"/>
+
+            </div>
           </div>
           <p className="text-green-400 font-semibold mt-4">
             New <span className="text-white">2023</span>

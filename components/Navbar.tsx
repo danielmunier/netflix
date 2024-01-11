@@ -53,7 +53,7 @@ const Navbar = () => {
       ${showBackground ? "bg-zinc-900 bg-opacity-90" : ""}
       `}
       >
-        <img src="/images/logo.png" alt="logo" className="h-4 lg: h-7" />
+        <img src="/images/logo.png" alt="logo" className="h-4 lg: h-7 cursor-pointer" />
         <div className="flex-row ml-8 gap-7 hidden lg:flex ">
           <NavbarItem label="Home" />
           <NavbarItem label="Series" />

@@ -10,6 +10,16 @@ const Watch = () => {
   const { data } = useMovie(movieId as string)
 
   console.log(data)
+
+
+  const isYoutubeVideo = (url: string) => {
+    return url && url.includes("youtube.com")
+  }
+
+   if(isYoutubeVideo(data?.videoUrl)) {
+
+  }
+
   return (
         <div className="h-screen w-screen bg-black ">
 
@@ -22,11 +32,25 @@ const Watch = () => {
             </p>
           </nav>
 
-          <video autoPlay controls className="h-full w-full" src={data?.videoUrl}>
-
-
-          </video>
-
+          {isYoutubeVideo(data?.videoUrl) ? (
+       
+        <iframe
+         className="w-full h-full"
+          src={data?.videoUrl}
+          allowFullScreen
+          allow="autoplay"
+        ></iframe>
+      ) : (
+    
+        <video
+          autoPlay
+          controls
+          className="h-full w-full"
+          src={data?.videoUrl}
+        >
+          Seu navegador não suporta o elemento de vídeo.
+        </video>
+      )}
         </div>
 
   )

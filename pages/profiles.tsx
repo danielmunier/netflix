@@ -68,6 +68,7 @@ const Profiles = () => {
         </div>
       </div>
     </div>
+
   );
 };
 

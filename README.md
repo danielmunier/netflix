@@ -1,3 +1,5 @@
+Projeto feito para replicar as funcionalidades de plataforma de serviço de streaming. Feito com React, Tailwind, Next.JS, Next-auth, Prisma e  MongoDB.
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started

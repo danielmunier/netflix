@@ -2,6 +2,10 @@ Projeto feito para replicar as funcionalidades de plataforma de serviço de stre
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## Usage example
+
+![example](https://i.imgur.com/teHQiTA.png)
+
 ## Getting Started
 
 First, run the development server:

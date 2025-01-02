@@ -77,9 +77,9 @@ const recruiterLogin = useCallback(async () => {
 
         <div className="flex justify-center">
           <div className="bg-black bg-opacity-70 px-16 py-16 self-center mt-2 lg:w-2/5 lg:max-w-md rounded-md w-full">
-            <h1 className="text-white text-5lx mb-5 font-semibold">{variant === 'login'? 'Sign in' : 'Create an account'}</h1>
+            <h1 className="text-white text-3xl mb-5 font-semibold">{variant === 'login'? 'Sign in' : 'Create an account'}</h1>
 
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-4" >
               {variant === 'signup' && (
                   <Input
                   label="Name"
@@ -111,8 +111,8 @@ const recruiterLogin = useCallback(async () => {
             </button>
         
             <div className="flex flex-row items-center gap-4 mt-8 justify-center">
-              <div onClick={() => signIn('google', {callbackUrl: "/profiles"})} className="w-10 h-10 bg-white rounded-full flex items-center justify-center cursor-pointer h over:opacity-80 transition"> <FcGoogle size={30} /></div>
-              <div onClick={() => signIn('github', {callbackUrl: "/profiles"})} className="w-10 h-10 bg-white rounded-full flex items-center justify-center cursor-pointer h over:opacity-80 transition"> <FaGithub size={30} /></div>
+              {/* <div onClick={() => signIn('google', {callbackUrl: "/profiles"})} className="w-10 h-10 bg-white rounded-full flex items-center justify-center cursor-pointer h over:opacity-80 transition"> <FcGoogle size={30} /></div> */}
+              <div onClick={() => signIn('github', {callbackUrl: "/profiles"})} className="w-9 h-9 bg-white rounded-full flex items-center justify-center cursor-pointer h over:opacity-80 transition"> <FaGithub size={30} /></div>
             </div>
           
             <p className="text-neutral-500 mt-5">
